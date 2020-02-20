@@ -8,5 +8,6 @@ namespace Secure_Calculator_Technical_Challenge.Calculator
     {
         public double Add(double lhs, double rhs);
         public double Subtract(double lhs, double rhs);
+        public double Multiply(double lhs, double rhs);
     }
 }
