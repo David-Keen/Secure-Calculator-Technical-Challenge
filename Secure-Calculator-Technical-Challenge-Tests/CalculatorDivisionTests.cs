@@ -37,21 +37,21 @@ namespace Secure_Calculator_Technical_Challenge_Tests
         public void OneAndMinusThreeShouldBeMinusOneThrid()
         {
             var sum = Calculator.Divide(1, -3);
-            Assert.AreEqual(sum, 1/3);
+            Assert.That(sum, Is.EqualTo(1 / 3).Within(15));
         }
 
         [Test]
         public void MinusThreeAndMinusThreeShouldBeOne()
         {
             var sum = Calculator.Divide(-3, -3);
-            Assert.AreEqual(sum, 0) ;
+            Assert.AreEqual(sum, 1) ;
         }
 
         [Test]
-        public void ZeroAndZeroShouldBeInfinity()
+        public void ZeroAndZeroShouldNotANumber()
         {
             var sum = Calculator.Divide(0, 0);
-            Assert.IsTrue(double.IsInfinity(sum));
+            Assert.IsTrue(double.IsNaN(sum));
         }
 
         public void OneAndZeroShouldBeInfinity()
