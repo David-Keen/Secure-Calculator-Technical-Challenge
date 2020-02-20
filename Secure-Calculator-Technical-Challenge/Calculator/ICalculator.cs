@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Secure_Calculator_Technical_Challenge.Calculator
+{
+    public interface ICalculator
+    {
+        public double Add(double lhs, double rhs);
+    }
+}
