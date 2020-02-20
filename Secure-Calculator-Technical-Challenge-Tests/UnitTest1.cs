@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Secure_Calculator_Technical_Challenge;
 
 namespace Secure_Calculator_Technical_Challenge_Tests
 {
@@ -31,7 +30,7 @@ namespace Secure_Calculator_Technical_Challenge_Tests
         public void MinusThreeAndOneShouldBeMinusTwo()
         {
             var sum = Calculator.Add(-3, 1);
-            Assert.AreEqual(sum, 1);
+            Assert.AreEqual(sum, -2);
         }
 
         [Test]
