@@ -7,5 +7,6 @@ namespace Secure_Calculator_Technical_Challenge.Calculator
     public interface ICalculator
     {
         public double Add(double lhs, double rhs);
+        public double Subtract(double lhs, double rhs);
     }
 }
