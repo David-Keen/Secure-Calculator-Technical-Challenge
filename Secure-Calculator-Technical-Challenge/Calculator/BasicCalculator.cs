@@ -20,5 +20,10 @@ namespace Secure_Calculator_Technical_Challenge.Calculator
         {
             return lhs * rhs;
         }
+
+        double ICalculator.Divide(double lhs, double rhs)
+        {
+            return lhs / rhs;
+        }
      }
 }
