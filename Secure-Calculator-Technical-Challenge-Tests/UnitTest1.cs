@@ -5,7 +5,7 @@ namespace Secure_Calculator_Technical_Challenge_Tests
 {
     public class CalculatorAdditionTests
     {
-        Secure_Calculator_Technical_Challenge.Calculator.BasicCalculator Calculator;
+        Secure_Calculator_Technical_Challenge.Calculator.ICalculator Calculator;
 
         [SetUp]
         public void Setup()
