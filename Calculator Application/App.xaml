@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Calculator_Application"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="InputButton" TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="Orange"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
     </Application.Resources>
 </Application>
