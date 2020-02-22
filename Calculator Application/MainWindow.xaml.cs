@@ -23,6 +23,12 @@ namespace Calculator_Application
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("Hello");
+        }
+
+        private void NumberClicked(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(Display.Content);
         }
     }
 }
