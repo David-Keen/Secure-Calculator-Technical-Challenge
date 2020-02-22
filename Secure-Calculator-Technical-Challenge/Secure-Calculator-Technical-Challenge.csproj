@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Secure_Calculator_Technical_Challenge</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
 </Project>

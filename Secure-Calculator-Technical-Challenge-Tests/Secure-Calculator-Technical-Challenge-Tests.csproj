@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Secure_Calculator_Technical_Challenge_Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Secure-Calculator-Technical-Challenge\Secure-Calculator-Technical-Challenge.csproj" />
+    <ProjectReference Include="..\Calculator Service\Calculator Service.csproj" />
   </ItemGroup>
 
 </Project>
