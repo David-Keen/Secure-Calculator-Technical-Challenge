@@ -20,6 +20,8 @@ namespace Calculator_Application
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string userInput;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +30,22 @@ namespace Calculator_Application
 
         private void NumberClicked(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(Display.Content);
+            processNumberClicked(((Button)sender).Content.ToString());
+        }
+
+        void processNumberClicked(string givenInput)
+        {
+            if (givenInput == "." && userInput.Contains(".")) return;
+            if (userInput != "0")
+            {
+                userInput += givenInput;
+            }
+            else if (userInput == "0" || userInput == "")
+            {
+                userInput += givenInput;
+            }
+
+            Display.Content = userInput;
         }
     }
 }
