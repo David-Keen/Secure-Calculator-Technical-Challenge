@@ -30,6 +30,7 @@ namespace Calculator_Application
             Multiplication
         }
 
+        private SecureCalculator.ICalculator calculator = new SecureCalculator.BasicCalculator();
         private string userInput = "";
         private double lhs = 0;
 
@@ -73,15 +74,50 @@ namespace Calculator_Application
             Display.Content = userInput;
         }
 
+        void EqualsClicked(object sender, RoutedEventArgs e)
+        {
+            if (currentOpperation == Operation.None || !isStringADouble(userInput)) return;
+            double rhs = Convert.ToDouble(userInput);
+            var sum = calculate(lhs, rhs, currentOpperation);
+
+            userInput = sum.ToString();
+
+            if (double.IsNaN(sum) || double.IsInfinity(sum))
+            {
+                Display.Content = "Error";
+            }
+            else
+            {
+                Display.Content = userInput.ToString();
+            }
+        }
+
+        private double calculate(double lhs, double rhs, Operation operation)
+        {
+            switch (operation)
+            {
+                case Operation.Addition: return calculator.Add(lhs, rhs);
+                case Operation.Subtraction: return calculator.Subtract(lhs, rhs);
+                case Operation.Multiplication: return calculator.Multiply(lhs, rhs);
+                case Operation.Division: return calculator.Divide(lhs, rhs);
+                default: throw new Exception("Error");
+            }
+        }
+
         void setOperation(Operation operation)
         {
-            var regex = new System.Text.RegularExpressions.Regex(@"/[^\d\.]/");
-            var matches = regex.Match(userInput);
-            if (matches.Length > 0) return;
+            if (!isStringADouble(userInput)) return;
             currentOpperation = operation;
             lhs = Convert.ToDouble(userInput);
             userInput = "";
             Display.Content = "0";
+        }
+
+        private bool isStringADouble(String str)
+        {
+            var regex = new System.Text.RegularExpressions.Regex(@"/[^\d\.]/");
+            var matches = regex.Match(userInput);
+            return matches.Length == 0;
         }
     }
 }

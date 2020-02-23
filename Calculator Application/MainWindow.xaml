@@ -40,7 +40,7 @@
             <Button Content="_" Grid.Row="3" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
             <Button Content="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
 
-            <Button Content="=" Grid.Row="4" Grid.Column="2" Style="{StaticResource ActionButton}"></Button>
+            <Button Content="=" Grid.Row="4" Grid.Column="2" Style="{StaticResource ActionButton}" Click="EqualsClicked"></Button>
         </Grid>
     </Grid>
 </Window>
