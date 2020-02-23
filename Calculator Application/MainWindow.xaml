@@ -35,11 +35,11 @@
             <Button Content="0" Grid.Row="4" Grid.Column="0" Style="{StaticResource InputButton}" Click="NumberClicked"></Button>
             <Button Content="." Grid.Row="4" Grid.Column="1" Style="{StaticResource InputButton}" Click="NumberClicked"></Button>
 
-            <Button Content="/" Grid.Row="1" Grid.Column="3" Style="{StaticResource ActionButton}"></Button>
-            <Button Content="X" Grid.Row="2" Grid.Column="3" Style="{StaticResource ActionButton}"></Button>
-            <Button Content="_" Grid.Row="3" Grid.Column="3" Style="{StaticResource ActionButton}"></Button>
-            <Button Content="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource ActionButton}"></Button>
-            
+            <Button Content="/" Grid.Row="1" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
+            <Button Content="X" Grid.Row="2" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
+            <Button Content="_" Grid.Row="3" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
+            <Button Content="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource ActionButton}" Click="OperationClicked"></Button>
+
             <Button Content="=" Grid.Row="4" Grid.Column="2" Style="{StaticResource ActionButton}"></Button>
         </Grid>
     </Grid>
