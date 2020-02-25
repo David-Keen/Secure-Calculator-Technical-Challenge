@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Secure Calculator Tests", "Secure-Calculator-Technical-Challenge-Tests\Secure Calculator Tests.csproj", "{B55BBE4E-FEB7-4A12-B671-69643BD57507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator Application", "Calculator Application\Calculator Application.csproj", "{538C25F7-12C5-4A7F-95F6-DBB66AF7DE0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator Application", "Calculator Application\Calculator Application.csproj", "{538C25F7-12C5-4A7F-95F6-DBB66AF7DE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator Service", "Calculator Service\Calculator Service.csproj", "{88F84A82-E38F-4C81-9316-A04B9BE1BFD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator Service", "Calculator Service\Calculator Service.csproj", "{88F84A82-E38F-4C81-9316-A04B9BE1BFD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login System", "Login System\Login System.csproj", "{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login System Tests", "Login System Tests\Login System Tests.csproj", "{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{88F84A82-E38F-4C81-9316-A04B9BE1BFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F84A82-E38F-4C81-9316-A04B9BE1BFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F84A82-E38F-4C81-9316-A04B9BE1BFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
