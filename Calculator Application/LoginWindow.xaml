@@ -1,0 +1,26 @@
+﻿<Window x:Class="Calculator_Application.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator_Application"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="200" Width="215">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Username" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock x:Name="UsernameInput" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="Password" Grid.Row="2" Grid.Column="0"/>
+        <TextBlock x:Name="PasswordInput"  Grid.Row="2" Grid.Column="0"/>
+        <Button Content="Login" Grid.Row="4" Grid.Column="0"/>
+    </Grid>
+</Window>
