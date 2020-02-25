@@ -16,7 +16,7 @@ namespace Database_Tests
         {
             Database.IUser user = database.GetUser("David", "Keen");
             Assert.NotNull(user);
-            Assert.AreEqual(user.GetFullName("David Keen"));
+            Assert.AreEqual(user.GetFullName(), "David Keen");
         }
     }
 }

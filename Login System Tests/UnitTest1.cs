@@ -49,5 +49,33 @@ namespace Login_System_Tests
 
             Assert.IsFalse(userInputPassword.MatchesHash(databasePassword.GenerateHash()));
         }
+
+        [Test]
+        public void UserDavidKeenDoesExist()
+        {
+            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
+            Database.IUser david = testDatabase.GetUser("David", "Keen");
+            Assert.AreEqual(david.GetFullName(), "David Keen");
+        }
+
+        [Test]
+        public void DavidKeenDoesHaveAHashedPasswordOfPassword()
+        {
+            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
+            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("password");
+            Database.IUser david = testDatabase.GetUser("David", "Keen");
+
+            Assert.IsTrue(userInputPassword.MatchesHash(david.GetPasswordHash()));
+        }
+
+        [Test]
+        public void DavidKeenDoesNotHaveAHashedPasswordOfPassword()
+        {
+            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
+            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("david");
+            Database.IUser david = testDatabase.GetUser("David", "Keen");
+
+            Assert.IsFalse(userInputPassword.MatchesHash(david.GetPasswordHash()));
+        }
     }
 }
