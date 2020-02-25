@@ -21,6 +21,6 @@
         <TextBox x:Name="UsernameInput" Grid.Row="1" Grid.Column="0"/>
         <Label Content="Password" Grid.Row="2" Grid.Column="0"/>
         <PasswordBox x:Name="PasswordInput"  Grid.Row="3" Grid.Column="0"/>
-        <Button Content="Login" Grid.Row="4" Grid.Column="0"/>
+        <Button Content="Login" Grid.Row="4" Grid.Column="0" Click="LoginClicked"/>
     </Grid>
 </Window>

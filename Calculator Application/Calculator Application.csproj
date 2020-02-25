@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Calculator Service\Calculator Service.csproj" />
+    <ProjectReference Include="..\Database\Database.csproj" />
+    <ProjectReference Include="..\Login System\Login System.csproj" />
   </ItemGroup>
 
 </Project>

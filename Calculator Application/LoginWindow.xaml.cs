@@ -17,9 +17,39 @@ namespace Calculator_Application
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private Database.IDatabaseContext database = new Database.TestDatabase();
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoginClicked(object sender, RoutedEventArgs e)
+        {
+            var username = UsernameInput.Text;
+
+            var firstName = username.Split(" ")[0];
+            var lastName = username.Split(" ")[1];
+            Database.IUser user = database.GetUser(firstName, lastName);
+
+            if (user == null || user.GetFullName() != username)
+            {
+                MessageBox.Show("No such user");
+                return;
+            }
+
+            string databasePassword = user.GetPasswordHash();
+            var password = new Login_System.Security.MD5HashedPassword(PasswordInput.Password);
+
+            if (password.MatchesHash(databasePassword))
+            {
+                var calculator = new MainWindow();
+                calculator.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Password does not match");
+            }
         }
     }
 }
