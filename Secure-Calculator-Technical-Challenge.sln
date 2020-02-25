@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator Service", "Calcu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login System", "Login System\Login System.csproj", "{B8E8EBC4-71C0-49A6-A078-E2EAF666696C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login System Tests", "Login System Tests\Login System Tests.csproj", "{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login System Tests", "Login System Tests\Login System Tests.csproj", "{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database Tests", "Database Tests\Database Tests.csproj", "{055F266D-DB7C-43C0-B58B-2144EBED8325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34CA3F9-04C5-4582-AC57-AFFEE1A2BB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{055F266D-DB7C-43C0-B58B-2144EBED8325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055F266D-DB7C-43C0-B58B-2144EBED8325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055F266D-DB7C-43C0-B58B-2144EBED8325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055F266D-DB7C-43C0-B58B-2144EBED8325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
