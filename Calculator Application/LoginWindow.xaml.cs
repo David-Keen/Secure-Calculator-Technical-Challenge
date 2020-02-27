@@ -27,28 +27,34 @@ namespace Calculator_Application
         {
             var username = UsernameInput.Text;
 
-            var firstName = username.Split(" ")[0];
-            var lastName = username.Split(" ")[1];
-            Database.IUser user = database.GetUser(firstName, lastName);
-
-            if (user == null || user.GetFullName() != username)
+            try
             {
-                MessageBox.Show("No such user");
-                return;
+                Database.IUser user = database.GetUser(int.Parse(username));
+
+                if (user == null)
+                {
+                    throw new Exception("User does not exist");
+                }
+
+                string databasePassword = user.GetPasswordHash();
+                var password = new Login_System.Security.MD5HashedPassword(PasswordInput.Password);
+
+                if (password.MatchesHash(databasePassword))
+                {
+                    var calculator = new MainWindow();
+                    calculator.Show();
+                    this.Close();
+                    return;
+                }
+                throw new Exception("Passwords do not match");
             }
-
-            string databasePassword = user.GetPasswordHash();
-            var password = new Login_System.Security.MD5HashedPassword(PasswordInput.Password);
-
-            if (password.MatchesHash(databasePassword))
+            catch (FormatException)
             {
-                var calculator = new MainWindow();
-                calculator.Show();
-                this.Close();
+                MessageBox.Show("Please enter your user id");
             }
-            else
+            catch (Exception error)
             {
-                MessageBox.Show("Password does not match");
+                MessageBox.Show(error.Message);
             }
         }
     }

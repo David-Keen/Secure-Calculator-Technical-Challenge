@@ -8,6 +8,17 @@ namespace Database
     {
         private string firstName;
         private string lastName;
+        private int id = -1;
+
+        public TestUser(int id)
+        {
+            this.id = id;
+            if (id == 0)
+            {
+                this.firstName = "David";
+                this.lastName = "Keen";
+            }
+        }
 
         public TestUser(string firstName, string lastName)
         {
@@ -21,7 +32,7 @@ namespace Database
 
         string IUser.GetPasswordHash()
         {
-            if (this.firstName == "David" && this.lastName == "Keen")
+            if (id == 0)
             {
                 return "5F4DCC3B5AA765D61D8327DEB882CF99";
             }

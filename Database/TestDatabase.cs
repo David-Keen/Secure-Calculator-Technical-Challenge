@@ -8,10 +8,12 @@ namespace Database
     {
         IUser IDatabaseContext.GetUser(string firstName, string lastName)
         {
-            if (firstName.ToLower() == "david" && lastName.ToLower() == "keen")
-            {
-                return new User("David", "Keen");
-            }
+            return new TestUser(firstName, lastName);
+        }
+
+        IUser IDatabaseContext.GetUser(int id)
+        {
+            if (id == 0) return new TestUser(id);
             return null;
         }
     }
