@@ -33,6 +33,7 @@ namespace Calculator_Application
         private SecureCalculator.ICalculator calculator = new SecureCalculator.BasicCalculator();
         private string userInput = "";
         private double lhs = 0;
+        private double rhs = double.NaN;
 
         private Operation currentOpperation = Operation.None;
 
@@ -61,6 +62,10 @@ namespace Calculator_Application
 
         void processNumberClicked(string givenInput)
         {
+            if (!double.IsNaN(this.rhs) && this.currentOpperation == Operation.None)
+            {
+                this.userInput = "";
+            }
             if (givenInput == "." && userInput.Contains(".")) return;
             if (userInput != "0")
             {
@@ -85,11 +90,14 @@ namespace Calculator_Application
             if (double.IsNaN(sum) || double.IsInfinity(sum))
             {
                 Display.Content = "Error";
+                this.rhs = double.NaN;
             }
             else
             {
+                this.rhs = rhs;
                 Display.Content = userInput.ToString();
             }
+            this.currentOpperation = Operation.None;
         }
 
         private double calculate(double lhs, double rhs, Operation operation)
