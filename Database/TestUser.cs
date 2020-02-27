@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Database
 {
-    public class User : IUser
+    public class TestUser : IUser
     {
         private string firstName;
         private string lastName;
 
-        public User(string firstName, string lastName)
+        public TestUser(string firstName, string lastName)
         {
             this.firstName = firstName;
             this.lastName = lastName;
