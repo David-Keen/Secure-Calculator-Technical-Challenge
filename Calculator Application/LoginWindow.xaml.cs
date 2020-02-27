@@ -17,7 +17,7 @@ namespace Calculator_Application
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private Database.IDatabaseContext database = new Database.TestDatabase();
+        private Database.IDatabaseContext database = new Database.ReleaseDatabase();
         public LoginWindow()
         {
             InitializeComponent();
