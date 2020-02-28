@@ -31,11 +31,17 @@ namespace Calculator_Application
         }
 
         private SecureCalculator.ICalculator calculator = new SecureCalculator.BasicCalculator();
-        private string userInput = "";
+        private string userInput = "0";
+
         private double lhs = 0;
-        private double rhs = double.NaN;
+        private double rhs = 0;
+
+        private bool isCurrentlyLhs = true;
 
         private Operation currentOpperation = Operation.None;
+
+
+        private bool clearFullFormula = false;
 
         public MainWindow()
         {
@@ -45,11 +51,21 @@ namespace Calculator_Application
 
         private void NumberClicked(object sender, RoutedEventArgs e)
         {
+            clearFullFormula = false;
+            if ((!isCurrentlyLhs || rhs != 0) && currentOpperation == Operation.None)
+            {
+                isCurrentlyLhs = true;
+                userInput = "0";
+                ClearButton.Content = "AC";
+            }
             processNumberClicked(((Button)sender).Content.ToString());
+            Display.Content = userInput;
         }
 
         private void OperationClicked(object sender, RoutedEventArgs e)
         {
+            var previousOperation = currentOpperation;
+            if (!isStringADouble(userInput)) return;
             Button operationalButton = (Button)sender;
             switch (operationalButton.Content.ToString())
             {
@@ -58,46 +74,66 @@ namespace Calculator_Application
                 case "X": setOperation(Operation.Multiplication); break;
                 case "/": setOperation(Operation.Division); break;
             }
+
+            if (isCurrentlyLhs)
+            {
+                lhs = Convert.ToDouble(userInput);
+                isCurrentlyLhs = false;
+            }
+            else
+            {
+                var newOperation = currentOpperation;
+                currentOpperation = previousOperation;
+                rhs = Convert.ToDouble(userInput);
+                ProcessEquals();
+                currentOpperation = newOperation;
+            }
+            userInput = "0";
+        }
+
+        private void ClearClicked(object sender, RoutedEventArgs e)
+        {
+            if (clearFullFormula)
+            {
+                ClearFormula();
+                ClearButton.Content = "AC";
+            }
+            else
+            {
+                ClearDisplay();
+                ClearButton.Content = "C";
+            }
+            clearFullFormula = !clearFullFormula;
         }
 
         void processNumberClicked(string givenInput)
         {
-            if (!double.IsNaN(this.rhs) && this.currentOpperation == Operation.None)
-            {
-                this.userInput = "";
-            }
             if (givenInput == "." && userInput.Contains(".")) return;
-            if (userInput != "0")
+            if (userInput == "0" && givenInput == "0") return;
+            if (userInput == "0")
             {
-                userInput += givenInput;
+                userInput = "";
             }
-            else if (userInput == "0" || userInput == "")
-            {
-                userInput += givenInput;
-            }
-
-            Display.Content = userInput;
+            userInput += givenInput;
         }
 
         void EqualsClicked(object sender, RoutedEventArgs e)
         {
-            if (currentOpperation == Operation.None || !isStringADouble(userInput)) return;
-            double rhs = Convert.ToDouble(userInput);
-            var sum = calculate(lhs, rhs, currentOpperation);
+            ProcessEquals();
+            isCurrentlyLhs = true;
+        }
 
+        void ProcessEquals()
+        {
+            if (!isStringADouble(userInput)) return;
+            rhs = Convert.ToDouble(userInput);
+            double sum = calculate(lhs, rhs, currentOpperation);
+            Display.Content = sum.ToString();
+            lhs = sum;
+            isCurrentlyLhs = false;
+            currentOpperation = Operation.None;
             userInput = sum.ToString();
-
-            if (double.IsNaN(sum) || double.IsInfinity(sum))
-            {
-                Display.Content = "Error";
-                this.rhs = double.NaN;
-            }
-            else
-            {
-                this.rhs = rhs;
-                Display.Content = userInput.ToString();
-            }
-            this.currentOpperation = Operation.None;
+            clearFullFormula = true;
         }
 
         private double calculate(double lhs, double rhs, Operation operation)
@@ -114,11 +150,8 @@ namespace Calculator_Application
 
         void setOperation(Operation operation)
         {
-            if (!isStringADouble(userInput)) return;
+            if (userInput == "" || !isStringADouble(userInput)) return;
             currentOpperation = operation;
-            lhs = Convert.ToDouble(userInput);
-            userInput = "";
-            Display.Content = "0";
         }
 
         private bool isStringADouble(String str)
@@ -126,6 +159,19 @@ namespace Calculator_Application
             var regex = new System.Text.RegularExpressions.Regex(@"/[^\d\.]/");
             var matches = regex.Match(userInput);
             return matches.Length == 0;
+        }
+
+        private void ClearDisplay()
+        {
+            Display.Content = "0";
+            userInput = "0";
+        }
+
+        private void ClearFormula()
+        {
+            isCurrentlyLhs = true;
+            ClearDisplay();
+            currentOpperation = Operation.None;
         }
     }
 }

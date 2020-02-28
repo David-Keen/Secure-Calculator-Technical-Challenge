@@ -25,8 +25,6 @@ namespace Calculator_Application
 
         private void LoginClicked(object sender, RoutedEventArgs e)
         {
-            var username = UsernameInput.Text;
-
             try
             {
                 this.Login(int.Parse(UsernameInput.Text), PasswordInput.Password);
@@ -43,12 +41,10 @@ namespace Calculator_Application
 
         private void Login(int id, string password)
         {
-            var user =  this.GetUser(id);
+            var user = this.GetUser(id);
             if (this.IsAuthenticated(user, password))
             {
-                var calculatorView = new MainWindow();
-                calculatorView.Show();
-                this.Close();
+                this.ShowCalculatorAndCloseCurrentWindow();
                 return;
             }
             throw new Exception("Passwords do not match");
@@ -66,6 +62,13 @@ namespace Calculator_Application
             string databasePassword = user.GetPasswordHash();
             var pass = new Login_System.Security.MD5HashedPassword(password);
             return pass.MatchesHash(databasePassword);
+        }
+
+        private void ShowCalculatorAndCloseCurrentWindow()
+        {
+            var calculatorView = new MainWindow();
+            calculatorView.Show();
+            this.Close();
         }
     }
 }
