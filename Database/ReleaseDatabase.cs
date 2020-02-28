@@ -16,7 +16,9 @@ namespace Database
 
         IUser IDatabaseContext.GetUser(int id)
         {
-            var connection = new SQLiteConnection("Data Source=C:\\Users\\David\\source\\repos\\Secure-Calculator-Technical-Challenge\\Database\\database.sqlite3;Version=3");
+            var path = System.IO.Directory.GetCurrentDirectory() + "\\database.sqlite3";
+            var connection = new SQLiteConnection(String.Format("Data Source={0};Version=3", path));
+            System.Diagnostics.Debug.WriteLine(String.Format("Path is: {0}", path));
             var command = new SQLiteCommand();
             command.CommandText = "SELECT * FROM users WHERE Id = @Id";
             var idParam = new SQLiteParameter("@Id", id);

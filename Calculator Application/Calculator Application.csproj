@@ -14,4 +14,10 @@
     <ProjectReference Include="..\Login System\Login System.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="database.sqlite3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

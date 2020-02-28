@@ -29,24 +29,7 @@ namespace Calculator_Application
 
             try
             {
-                Database.IUser user = database.GetUser(int.Parse(username));
-
-                if (user == null)
-                {
-                    throw new Exception("User does not exist");
-                }
-
-                string databasePassword = user.GetPasswordHash();
-                var password = new Login_System.Security.MD5HashedPassword(PasswordInput.Password);
-
-                if (password.MatchesHash(databasePassword))
-                {
-                    var calculator = new MainWindow();
-                    calculator.Show();
-                    this.Close();
-                    return;
-                }
-                throw new Exception("Passwords do not match");
+                this.Login(int.Parse(UsernameInput.Text), PasswordInput.Password);
             }
             catch (FormatException)
             {
@@ -56,6 +39,33 @@ namespace Calculator_Application
             {
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void Login(int id, string password)
+        {
+            var user =  this.GetUser(id);
+            if (this.IsAuthenticated(user, password))
+            {
+                var calculatorView = new MainWindow();
+                calculatorView.Show();
+                this.Close();
+                return;
+            }
+            throw new Exception("Passwords do not match");
+        }
+
+        private Database.IUser GetUser(int id)
+        {
+            Database.IUser user = database.GetUser(id);
+            if (user == null) throw new Exception("User does not exist");
+            return user;
+        }
+
+        private bool IsAuthenticated(Database.IUser user, string password)
+        {
+            string databasePassword = user.GetPasswordHash();
+            var pass = new Login_System.Security.MD5HashedPassword(password);
+            return pass.MatchesHash(databasePassword);
         }
     }
 }
