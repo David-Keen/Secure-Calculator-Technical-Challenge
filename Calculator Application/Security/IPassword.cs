@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Login_System.Security
+namespace Calculator_Application.Security
 {
     public abstract class IPassword
     {

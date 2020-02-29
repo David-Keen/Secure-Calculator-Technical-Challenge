@@ -60,7 +60,7 @@ namespace Calculator_Application
         private bool IsAuthenticated(Database.User.IUser user, string password)
         {
             string databasePassword = user.GetPasswordHash();
-            var pass = new Login_System.Security.MD5HashedPassword(password);
+            var pass = new Security.MD5HashedPassword(password);
             return pass.MatchesHash(databasePassword);
         }
 
