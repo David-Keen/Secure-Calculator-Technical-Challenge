@@ -9,12 +9,12 @@ namespace Calculator_Application.Database
 {
     public class ReleaseDatabase : IDatabaseContext
     {
-        IUser IDatabaseContext.GetUser(string firstName, string lastName)
+        User.IUser IDatabaseContext.GetUser(string firstName, string lastName)
         {
             return null;
         }
 
-        IUser IDatabaseContext.GetUser(int id)
+        User.IUser IDatabaseContext.GetUser(int id)
         {
             var path = System.IO.Directory.GetCurrentDirectory() + "\\database.sqlite3";
             var connection = new SQLiteConnection(String.Format("Data Source={0};Version=3", path));
@@ -40,7 +40,7 @@ namespace Calculator_Application.Database
                 string firstName = row["FirstName"].ToString();
                 string lastName = row["LastName"].ToString();
                 string passwordHash = row["Password"].ToString();
-                return new User(firstName, lastName, passwordHash, id);
+                return new User.User(firstName, lastName, passwordHash, id);
             }
         }
     }

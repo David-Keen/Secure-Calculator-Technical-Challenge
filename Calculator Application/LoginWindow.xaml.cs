@@ -50,14 +50,14 @@ namespace Calculator_Application
             throw new Exception("Passwords do not match");
         }
 
-        private Database.IUser GetUser(int id)
+        private Database.User.IUser GetUser(int id)
         {
-            Database.IUser user = database.GetUser(id);
+            Database.User.IUser user = database.GetUser(id);
             if (user == null) throw new Exception("User does not exist");
             return user;
         }
 
-        private bool IsAuthenticated(Database.IUser user, string password)
+        private bool IsAuthenticated(Database.User.IUser user, string password)
         {
             string databasePassword = user.GetPasswordHash();
             var pass = new Login_System.Security.MD5HashedPassword(password);
