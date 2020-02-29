@@ -35,13 +35,16 @@ namespace Calculator_Application
 
         private double lhs = 0;
         private double rhs = 0;
-
-        private bool isCurrentlyLhs = true;
-
         private Operation currentOpperation = Operation.None;
 
+        private bool processingLhs = true;
+        private bool shouldClearFullFormula = false;
+        private bool decimalPlaceClicked = false;
 
-        private bool clearFullFormula = false;
+        private bool shouldStartProcessingNewSum
+        {
+            get { return (!processingLhs || rhs != 0) && currentOpperation == Operation.None; }
+        }
 
         public MainWindow()
         {
@@ -51,49 +54,45 @@ namespace Calculator_Application
 
         private void NumberClicked(object sender, RoutedEventArgs e)
         {
-            clearFullFormula = false;
-            if ((!isCurrentlyLhs || rhs != 0) && currentOpperation == Operation.None)
-            {
-                isCurrentlyLhs = true;
-                userInput = "0";
-                ClearButton.Content = "AC";
-            }
+            shouldClearFullFormula = false;
+            if (shouldStartProcessingNewSum) ClearFormula();
             processNumberClicked(((Button)sender).Content.ToString());
-            Display.Content = userInput;
         }
 
         private void OperationClicked(object sender, RoutedEventArgs e)
         {
-            var previousOperation = currentOpperation;
             if (!isStringADouble(userInput)) return;
+
+            if (processingLhs)
+            {
+                lhs = Convert.ToDouble(userInput);
+                processingLhs = false;
+            }
+            else
+            {
+                rhs = Convert.ToDouble(userInput);
+                ProcessEquals();
+            }
+
             Button operationalButton = (Button)sender;
-            switch (operationalButton.Content.ToString())
+            setOperationFromString(operationalButton.Content.ToString());
+            userInput = "0";
+        }
+
+        private void setOperationFromString(string operation)
+        {
+            switch (operation)
             {
                 case "+": setOperation(Operation.Addition); break;
                 case "_": setOperation(Operation.Subtraction); break;
                 case "X": setOperation(Operation.Multiplication); break;
                 case "/": setOperation(Operation.Division); break;
             }
-
-            if (isCurrentlyLhs)
-            {
-                lhs = Convert.ToDouble(userInput);
-                isCurrentlyLhs = false;
-            }
-            else
-            {
-                var newOperation = currentOpperation;
-                currentOpperation = previousOperation;
-                rhs = Convert.ToDouble(userInput);
-                ProcessEquals();
-                currentOpperation = newOperation;
-            }
-            userInput = "0";
         }
 
         private void ClearClicked(object sender, RoutedEventArgs e)
         {
-            if (clearFullFormula)
+            if (shouldClearFullFormula)
             {
                 ClearFormula();
                 ClearButton.Content = "AC";
@@ -103,24 +102,21 @@ namespace Calculator_Application
                 ClearDisplay();
                 ClearButton.Content = "C";
             }
-            clearFullFormula = !clearFullFormula;
+            shouldClearFullFormula = !shouldClearFullFormula;
         }
 
         void processNumberClicked(string givenInput)
         {
-            if (givenInput == "." && userInput.Contains(".")) return;
-            if (userInput == "0" && givenInput == "0") return;
-            if (userInput == "0")
-            {
-                userInput = "";
-            }
+            if ((userInput == "0" && givenInput == "0") || decimalPlaceClicked) return;
+            if (userInput == "0") userInput = "";
             userInput += givenInput;
+            Display.Content = userInput;
         }
 
         void EqualsClicked(object sender, RoutedEventArgs e)
         {
             ProcessEquals();
-            isCurrentlyLhs = true;
+            processingLhs = true;
         }
 
         void ProcessEquals()
@@ -130,10 +126,10 @@ namespace Calculator_Application
             double sum = calculate(lhs, rhs, currentOpperation);
             Display.Content = sum.ToString();
             lhs = sum;
-            isCurrentlyLhs = false;
+            processingLhs = false;
             currentOpperation = Operation.None;
             userInput = sum.ToString();
-            clearFullFormula = true;
+            shouldClearFullFormula = true;
         }
 
         private double calculate(double lhs, double rhs, Operation operation)
@@ -150,7 +146,7 @@ namespace Calculator_Application
 
         void setOperation(Operation operation)
         {
-            if (userInput == "" || !isStringADouble(userInput)) return;
+            if (!isStringADouble(userInput)) return;
             currentOpperation = operation;
         }
 
@@ -169,7 +165,7 @@ namespace Calculator_Application
 
         private void ClearFormula()
         {
-            isCurrentlyLhs = true;
+            processingLhs = true;
             ClearDisplay();
             currentOpperation = Operation.None;
         }
