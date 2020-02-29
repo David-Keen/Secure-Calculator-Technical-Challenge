@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Database
+namespace Calculator_Application.Database
 {
     public class TestDatabase : IDatabaseContext
     {

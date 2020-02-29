@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SQLite;
 
-namespace Database
+namespace Calculator_Application.Database
 {
     public class ReleaseDatabase : IDatabaseContext
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Database
+namespace Calculator_Application.Database
 {
     public interface IDatabaseContext
     {
