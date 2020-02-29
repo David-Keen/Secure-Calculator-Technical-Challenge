@@ -16,7 +16,7 @@ namespace Calculator_Application.Database
 
         private SQLiteConnection OpenDatabaseConnection()
         {
-            var path = System.IO.Directory.GetCurrentDirectory() + "\\database.sqlite3";
+            var path = System.IO.Directory.GetCurrentDirectory() + "\\Database\\database.sqlite3";
             var connection = new SQLiteConnection(String.Format("Data Source={0};Version=3", path));
             connection.Open();
             System.Diagnostics.Debug.WriteLine(String.Format("Path is: {0}", path));
