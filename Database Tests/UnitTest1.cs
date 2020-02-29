@@ -1,20 +1,22 @@
 using NUnit.Framework;
+using Calculator_Application.Database;
+using Calculator_Application.Database.User;
 
 namespace Database_Tests
 {
     public class Tests
     {
-        Database.IDatabaseContext database;
+        IDatabaseContext database;
         [SetUp]
         public void Setup()
         {
-            database = new Database.TestDatabase();
+            database = new TestDatabase();
         }
 
         [Test]
         public void TestCanGetUserFromName()
         {
-            Database.IUser user = database.GetUser("Test", "User");
+            IUser user = database.GetUser("Test", "User");
             Assert.NotNull(user);
             Assert.AreEqual(user.GetFullName(), "Test User");
         }
@@ -22,7 +24,7 @@ namespace Database_Tests
         [Test]
         public void TestCanGetDavidKeenFromId0()
         {
-            Database.IUser user = database.GetUser(0);
+            IUser user = database.GetUser(0);
             Assert.NotNull(user);
             Assert.AreEqual(user.GetFullName(), "David Keen");
         }

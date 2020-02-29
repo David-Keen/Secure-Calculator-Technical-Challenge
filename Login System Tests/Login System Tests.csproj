@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
-    <ProjectReference Include="..\Login System\Login System.csproj" />
+    <ProjectReference Include="..\Calculator Application\Calculator Application.csproj" />
   </ItemGroup>
 
 </Project>

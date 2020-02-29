@@ -1,15 +1,16 @@
 using NUnit.Framework;
+using Calculator_Application.SecureCalculator;
 
 namespace Secure_Calculator_Technical_Challenge_Tests
 {
     public class CalculatorSubtractionTests
     {
-        SecureCalculator.ICalculator Calculator;
+        ICalculator Calculator;
 
         [SetUp]
         public void Setup()
         {
-            Calculator = new SecureCalculator.BasicCalculator();
+            Calculator = new BasicCalculator();
         }
 
         [Test]

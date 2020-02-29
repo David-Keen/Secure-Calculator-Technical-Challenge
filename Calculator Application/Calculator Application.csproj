@@ -13,12 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Calculator Service\Calculator Service.csproj" />
-    <ProjectReference Include="..\Database\Database.csproj" />
-    <ProjectReference Include="..\Login System\Login System.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="database.sqlite3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -24,6 +24,10 @@ namespace Calculator_Application.Database.User
         {
             this.firstName = firstName;
             this.lastName = lastName;
+            if (firstName == "David" && lastName == "Keen")
+            {
+                this.id = 0;
+            }
         }
         string IUser.GetFullName()
         {

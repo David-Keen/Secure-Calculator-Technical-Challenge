@@ -1,4 +1,7 @@
 using NUnit.Framework;
+using Calculator_Application.Security;
+using Calculator_Application.Database;
+using Calculator_Application.Database.User;
 
 namespace Login_System_Tests
 {
@@ -12,22 +15,22 @@ namespace Login_System_Tests
         [Test]
         public void TestDoesGivePasswordAsMD5()
         {
-            Login_System.Security.MD5HashedPassword password = new Login_System.Security.MD5HashedPassword("password");
+            MD5HashedPassword password = new MD5HashedPassword("password");
             Assert.AreEqual("5F4DCC3B5AA765D61D8327DEB882CF99", password.GenerateHash());
         }
 
         [Test]
         public void TestDoesGiveDavidAsMD5()
         {
-            Login_System.Security.MD5HashedPassword password = new Login_System.Security.MD5HashedPassword("David");
+            MD5HashedPassword password = new MD5HashedPassword("David");
             Assert.AreEqual("464E07AFC9E46359FB480839150595C5", password.GenerateHash());
         }
 
         [Test]
         public void TestCompareMatchesWithPasswordAsPassword()
         {
-            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("password");
-            Login_System.Security.IPassword databasePassword = new Login_System.Security.MD5HashedPassword("password");
+            IPassword userInputPassword = new MD5HashedPassword("password");
+            IPassword databasePassword = new MD5HashedPassword("password");
 
             Assert.IsTrue(userInputPassword.MatchesHash(databasePassword.GenerateHash()));
         }
@@ -35,8 +38,8 @@ namespace Login_System_Tests
         [Test]
         public void TestCompareMatchesWithPasswordAsDavid()
         {
-            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("David");
-            Login_System.Security.IPassword databasePassword = new Login_System.Security.MD5HashedPassword("David");
+            IPassword userInputPassword = new MD5HashedPassword("David");
+            IPassword databasePassword = new MD5HashedPassword("David");
 
             Assert.IsTrue(userInputPassword.MatchesHash(databasePassword.GenerateHash()));
         }
@@ -44,8 +47,8 @@ namespace Login_System_Tests
         [Test]
         public void TestCompareMatchesWithPasswordAsDavidButCaseChanged()
         {
-            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("David");
-            Login_System.Security.IPassword databasePassword = new Login_System.Security.MD5HashedPassword("david");
+            IPassword userInputPassword = new MD5HashedPassword("David");
+            IPassword databasePassword = new MD5HashedPassword("david");
 
             Assert.IsFalse(userInputPassword.MatchesHash(databasePassword.GenerateHash()));
         }
@@ -53,17 +56,17 @@ namespace Login_System_Tests
         [Test]
         public void UserDavidKeenDoesExist()
         {
-            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
-            Database.IUser david = testDatabase.GetUser("David", "Keen");
+            IDatabaseContext testDatabase = new TestDatabase();
+            IUser david = testDatabase.GetUser("David", "Keen");
             Assert.AreEqual(david.GetFullName(), "David Keen");
         }
 
         [Test]
         public void DavidKeenDoesHaveAHashedPasswordOfPassword()
         {
-            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
-            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("password");
-            Database.IUser david = testDatabase.GetUser("David", "Keen");
+            IDatabaseContext testDatabase = new TestDatabase();
+            IPassword userInputPassword = new MD5HashedPassword("password");
+            IUser david = testDatabase.GetUser("David", "Keen");
 
             Assert.IsTrue(userInputPassword.MatchesHash(david.GetPasswordHash()));
         }
@@ -71,9 +74,9 @@ namespace Login_System_Tests
         [Test]
         public void DavidKeenDoesNotHaveAHashedPasswordOfPassword()
         {
-            Database.IDatabaseContext testDatabase = new Database.TestDatabase();
-            Login_System.Security.IPassword userInputPassword = new Login_System.Security.MD5HashedPassword("david");
-            Database.IUser david = testDatabase.GetUser("David", "Keen");
+            IDatabaseContext testDatabase = new TestDatabase();
+            IPassword userInputPassword = new MD5HashedPassword("david");
+            IUser david = testDatabase.GetUser("David", "Keen");
 
             Assert.IsFalse(userInputPassword.MatchesHash(david.GetPasswordHash()));
         }
