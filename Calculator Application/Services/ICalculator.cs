@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SecureCalculator
+namespace Calculator_Application.SecureCalculator
 {
     public interface ICalculator
     {

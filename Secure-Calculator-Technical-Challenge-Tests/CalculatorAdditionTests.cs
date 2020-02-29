@@ -4,12 +4,12 @@ namespace Secure_Calculator_Technical_Challenge_Tests
 {
     public class CalculatorAdditionTests
     {
-        SecureCalculator.ICalculator Calculator;
+        Calculator_Application.SecureCalculator.ICalculator Calculator;
 
         [SetUp]
         public void Setup()
         {
-            Calculator = new SecureCalculator.BasicCalculator();
+            Calculator = new Calculator_Application.SecureCalculator.BasicCalculator();
         }
 
         [Test]
