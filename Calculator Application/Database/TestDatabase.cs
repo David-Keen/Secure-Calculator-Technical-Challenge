@@ -6,14 +6,14 @@ namespace Calculator_Application.Database
 {
     public class TestDatabase : IDatabaseContext
     {
-        User.IUser IDatabaseContext.GetUser(string firstName, string lastName)
+        IUser IDatabaseContext.GetUser(string firstName, string lastName)
         {
-            return new User.TestUser(firstName, lastName);
+            return new TestUser(firstName, lastName);
         }
 
-        User.IUser IDatabaseContext.GetUser(int id)
+        IUser IDatabaseContext.GetUser(int id)
         {
-            if (id == 0) return new User.TestUser(id);
+            if (id == 0) return new TestUser(id);
             return null;
         }
     }

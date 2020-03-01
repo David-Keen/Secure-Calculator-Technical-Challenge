@@ -4,7 +4,7 @@ using System.Text;
 using System.Data.SQLite;
 using System.Data;
 
-namespace Calculator_Application.Database.User
+namespace Calculator_Application.Database
 {
     class User : IUser
     {

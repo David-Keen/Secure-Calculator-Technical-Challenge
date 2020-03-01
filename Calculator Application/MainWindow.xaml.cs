@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Calculator_Application.Services;
 
 namespace Calculator_Application
 {
@@ -30,7 +31,7 @@ namespace Calculator_Application
             Multiplication
         }
 
-        private SecureCalculator.ICalculator calculator = new SecureCalculator.BasicCalculator();
+        private Services.Calculator.ICalculator calculator = new Services.Calculator.BasicCalculator();
         private string userInput = "0";
 
         private double lhs = 0;

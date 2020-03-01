@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Calculator_Application.SecureCalculator;
+using Calculator_Application.Services.Calculator;
 namespace Secure_Calculator_Technical_Challenge_Tests
 {
     public class CalculatorMultiplicationTests

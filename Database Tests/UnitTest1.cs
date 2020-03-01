@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using Calculator_Application.Database;
-using Calculator_Application.Database.User;
 
 namespace Database_Tests
 {

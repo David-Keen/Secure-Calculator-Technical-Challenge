@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Calculator_Application.Database.User
+namespace Calculator_Application.Database
 {
     public class TestUser : IUser
     {

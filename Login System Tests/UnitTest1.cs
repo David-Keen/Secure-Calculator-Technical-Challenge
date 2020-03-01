@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using Calculator_Application.Security;
 using Calculator_Application.Database;
-using Calculator_Application.Database.User;
 
 namespace Login_System_Tests
 {
