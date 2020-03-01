@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data.SQLite;
-using System.Data;
 
 namespace Calculator_Application.Database
 {

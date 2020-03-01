@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Calculator_Application.Database
+﻿namespace Calculator_Application.Database
 {
     public interface IDatabaseContext
     {
